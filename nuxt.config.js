@@ -1,8 +1,9 @@
 export default {
   ssr: false,
+  target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Ryan - vCard / Resume / CV Template",
+    title: "James - Porfolio",
     htmlAttrs: {
       lang: "en",
     },

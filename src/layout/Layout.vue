@@ -62,15 +62,15 @@ export default {
     },
     noSidebar: { type: Boolean },
   },
-  head: {
-    link: [
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "./images/favicons/favicon.ico",
-      },
-    ],
-  },
+  // head: {
+  //   link: [
+  //     {
+  //       rel: "icon",
+  //       type: "image/x-icon",
+  //       href: "./images/favicons/favicon.ico",
+  //     },
+  //   ],
+  // },
   mounted() {
     titleActive();
     aTag();

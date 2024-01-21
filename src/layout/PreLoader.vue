@@ -19,10 +19,20 @@ export default {
       loader: true,
     };
   },
-  mounted() {
-    setTimeout(() => {
-      this.loader = false;
-    }, 2000);
+  computed: {
+    profile() {
+      return this.$store.state.profile.personal;
+    }
   },
+  mounted() {
+    this.$store.dispatch('profile/fetchProfile');
+  },
+  watch: {
+    profile(val) {
+      if(val) {
+        this.loader = false;
+      }
+    }
+  }
 };
 </script>

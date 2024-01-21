@@ -17,12 +17,9 @@
             </h1>
             <div class="blog-detail">
               <span class="date">{{ date }}</span>
-              <span class="cat-links"
-                ><a href="#">Design</a>, <a href="#">Music</a></span
-              >
               <span class="byline">
-                by <span class="author"><a href="#">admin</a></span></span
-              >
+                by <span class="author"><a href="#">admin</a></span>
+              </span>
             </div>
 
             <!-- blog image -->
@@ -102,7 +99,7 @@
         </div>
       </div>
 
-      <nav class="navigation post-navigation">
+      <!-- <nav class="navigation post-navigation">
         <div class="nav-links">
           <div class="nav-previous">
             <a href="#"
@@ -115,96 +112,22 @@
             >
           </div>
         </div>
-      </nav>
+      </nav> -->
 
       <div class="post-comments">
         <div class="title">
-          <div class="title_inner">3 Comments</div>
+          <div class="title_inner">Comments</div>
         </div>
         <div class="row border-line-v comments-row">
           <div class="col col-m-12 col-t-12 col-d-12">
             <ul class="comments">
               <li class="comment post-comment">
                 <div class="comment">
-                  <div class="comment-image image">
-                    <img
-                      src="images/man1.jpg"
-                      class="avatar"
-                      height="80"
-                      width="80"
-                      alt=""
-                    />
-                  </div>
                   <div class="comment-desc desc">
                     <div class="comment-name name">
                       <span class="comment-author">John Doe</span>
                       <span class="comment-time">8:16 pm</span>
                       <span class="comment-date">April 28, 2020</span>
-                      <span class="comment-reply">
-                        <a class="comment-reply-link" href="#">Reply</a>
-                      </span>
-                    </div>
-                    <div class="comment-text">
-                      <p>
-                        An has alterum nominavi. Nam at elitr veritus
-                        voluptaria. Cu eum regione tacimates vituperatoribus, ut
-                        mutat delenit est.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <ul class="children">
-                <li class="comment post-comment">
-                  <div class="comment">
-                    <div class="comment-image image">
-                      <img
-                        src="images/man1.jpg"
-                        class="avatar"
-                        height="80"
-                        width="80"
-                        alt=""
-                      />
-                    </div>
-                    <div class="comment-desc desc">
-                      <div class="comment-name name">
-                        <span class="comment-author">John Doe</span>
-                        <span class="comment-time">8:16 pm</span>
-                        <span class="comment-date">April 28, 2020</span>
-                        <span class="comment-reply">
-                          <a class="comment-reply-link" href="#">Reply</a>
-                        </span>
-                      </div>
-                      <div class="comment-text">
-                        <p>
-                          An has alterum nominavi. Nam at elitr veritus
-                          voluptaria. Cu eum regione tacimates vituperatoribus,
-                          ut mutat delenit est.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <li class="comment post-comment">
-                <div class="comment">
-                  <div class="comment-image image">
-                    <img
-                      src="images/man1.jpg"
-                      class="avatar"
-                      height="80"
-                      width="80"
-                      alt=""
-                    />
-                  </div>
-                  <div class="comment-desc desc">
-                    <div class="comment-name name">
-                      <span class="comment-author">John Doe</span>
-                      <span class="comment-time">8:16 pm</span>
-                      <span class="comment-date">April 28, 2020</span>
-                      <span class="comment-reply">
-                        <a class="comment-reply-link" href="#">Reply</a>
-                      </span>
                     </div>
                     <div class="comment-text">
                       <p>

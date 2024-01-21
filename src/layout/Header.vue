@@ -53,7 +53,7 @@ export default {
     arr: { type: Array },
     name: {
       type: String,
-      default: "Ryan Adlard",
+      default: "Huu Ha Doan",
     },
     menus: {
       type: [Object, Array],
@@ -64,6 +64,7 @@ export default {
           { name: "Works", href: "works", icon: "icon ion-paintbrush" },
           { name: "Blog", href: "blog", icon: "icon ion-chatbox-working" },
           { name: "Contact", href: "contacts", icon: "icon ion-at" },
+          { name: "ChatBot", href: "chat", icon: "icon ion-chatbox" },
         ];
       },
     },

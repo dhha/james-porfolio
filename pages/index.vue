@@ -3,14 +3,11 @@
     <Header noSidebar/>
 
     <div class="card-started" id="home-card" v-if="profile">
-      <!--
-  Profile
--->
       <div class="profile no-photo">
         <!-- profile image -->
         <div
           class="slide"
-          style="background-image: url(images/man5_big.jpg)"
+          :style="'background-image: url(' + this.profile.avatar + ')'"
         ></div>
 
         <!-- profile titles -->
@@ -20,26 +17,20 @@
 
         <!-- profile socials -->
         <div class="social">
-          <a target="_blank" href="https://dribbble.com/"
+          <a target="_blank" :href="this.profile.website"
             ><span class="fa fa-dribbble"></span
           ></a>
-          <a target="_blank" href="https://twitter.com/"
-            ><span class="fa fa-twitter"></span
-          ></a>
-          <a target="_blank" href="https://github.com/"
+          <a target="_blank" :href="this.profile.github"
             ><span class="fa fa-github"></span
           ></a>
-          <a target="_blank" href="https://www.spotify.com/"
-            ><span class="fa fa-spotify"></span
-          ></a>
-          <a target="_blank" href="https://stackoverflow.com/"
-            ><span class="fa fa-stack-overflow"></span
+          <a target="_blank" :href="this.profile.linkedin"
+            ><span class="fa fa-linkedin"></span
           ></a>
         </div>
 
         <!-- profile buttons -->
         <div class="lnks">
-          <a href="#" class="lnk">
+          <a :href="this.profile.resume_file" class="lnk">
             <span class="text">Download CV</span>
             <span class="ion ion-archive"></span>
           </a>
@@ -50,7 +41,7 @@
         </div>
       </div>
     </div>
-    <ActiveSection :sectionName="'about'">
+    <ActiveSection :sectionName="'about'" v-if="this.profile">
       <!--
         About
       -->
@@ -60,23 +51,19 @@
 
         <!-- content -->
         <div class="row">
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
+          <div class="col col-d-12 col-t-6 col-m-12 border-line-v">
             <div class="text-box">
               <p>
-                I am Ryan Adlard, web designer from USA, California. I have rich
-                experience in web site design and building and customization,
-                also I am good at wordpress. I love to talk with you about our
-                unique.
+                {{ this.profile.about_me }}
               </p>
             </div>
           </div>
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
+          <div class="col col-d-12 col-t-6 col-m-12 border-line-v">
             <div class="info-list">
               <ul>
-                <li><strong>Age . . . . .</strong> 24</li>
-                <li><strong>Residence . . . . .</strong> USA</li>
-                <li><strong>Freelance . . . . .</strong> Available</li>
-                <li><strong>Address . . . . .</strong> California, USA</li>
+                <li><strong>Address . . . . .</strong> {{ this.profile.address }}</li>
+                <li><strong>Phone . . . . .</strong> {{ this.profile.phone_number }}</li>
+                <li><strong>Email . . . . .</strong> {{ this.profile.email }}</li>
               </ul>
             </div>
           </div>
@@ -94,76 +81,18 @@
         <!-- content -->
         <div class="row service-items border-line-v">
           <!-- service item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-h">
+          <div class="col col-d-6 col-t-6 col-m-12 border-line-h" v-for="service in this.services" :key="service.name">
             <div class="service-item">
-              <div class="icon">
+              <!-- <div class="icon">
                 <span class="fa fa-code"></span>
-              </div>
+              </div> -->
               <div class="name">
-                <span> Web Development </span>
+                <span> {{service.name}} </span>
               </div>
               <div class="desc">
                 <div>
                   <p>
-                    Modern and mobile-ready website that will help you reach all
-                    of your marketing.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- service item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-h">
-            <div class="service-item">
-              <div class="icon">
-                <span class="fa fa-music"></span>
-              </div>
-              <div class="name">
-                <span> Music Writing </span>
-              </div>
-              <div class="desc">
-                <div>
-                  <p>
-                    Music copying, writing, creating, transcription, arranging
-                    and composition services.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- service item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-h">
-            <div class="service-item">
-              <div class="icon">
-                <span class="fa fa-buysellads"></span>
-              </div>
-              <div class="name">
-                <span> Advetising </span>
-              </div>
-              <div class="desc">
-                <div>
-                  <p>
-                    Advertising services include television, radio, print, mail,
-                    and web apps.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- service item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-h">
-            <div class="service-item">
-              <div class="icon">
-                <span class="fa fa-gamepad"></span>
-              </div>
-              <div class="name">
-                <span> Game Development </span>
-              </div>
-              <div class="desc">
-                <div>
-                  <p>
-                    Developing memorable and unique mobile android, ios and
-                    video games.
+                    {{service.desciption}}
                   </p>
                 </div>
               </div>
@@ -172,208 +101,7 @@
         </div>
         <div class="clear"></div>
       </div>
-
-      <!--
-        Price Tables
-      -->
-      <div class="content pricing">
-        <!-- title -->
-        <div class="title">Pricing</div>
-
-        <!-- content -->
-        <div class="row pricing-items">
-          <!-- pricing item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div class="pricing-item">
-              <div class="icon"><i class="fa fa-battery-half"></i></div>
-              <div class="name">Basic</div>
-              <div class="amount">
-                <span class="dollar">$</span>
-                <span class="number">22</span>
-                <span class="period">hour</span>
-              </div>
-              <div class="feature-list">
-                <ul>
-                  <li>Web Development</li>
-                  <li>Advetising</li>
-                  <li>Game Development</li>
-                  <li class="disable">Music Writing</li>
-                  <li class="disable">Photography <strong>new</strong></li>
-                </ul>
-              </div>
-              <div class="lnks">
-                <a href="#" class="lnk">
-                  <span class="text">Buy Basic</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- pricing item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div class="pricing-item">
-              <div class="icon"><i class="fa fa-battery-full"></i></div>
-              <div class="name">Pro</div>
-              <div class="amount">
-                <span class="dollar">$</span>
-                <span class="number">48</span>
-                <span class="period">hour</span>
-              </div>
-              <div class="feature-list">
-                <ul>
-                  <li>Web Development</li>
-                  <li>Advetising</li>
-                  <li>Game Development</li>
-                  <li>Music Writing</li>
-                  <li>Photography <strong>new</strong></li>
-                </ul>
-              </div>
-              <div class="lnks">
-                <a href="#" class="lnk">
-                  <span class="text">Buy Pro</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="clear"></div>
-        </div>
-      </div>
-
-      <!--
-        Fun Fact
-      -->
-      <div class="content fuct">
-        <!-- title -->
-        <div class="title">Fun Fact</div>
-
-        <!-- content -->
-        <div class="row fuct-items">
-          <!-- fuct item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="fuct-item">
-              <div class="icon"><span class="fa fa-music"></span></div>
-              <div class="name">80 Albumes Listened</div>
-            </div>
-          </div>
-
-          <!-- fuct item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="fuct-item">
-              <div class="icon"><span class="fa fa-trophy"></span></div>
-              <div class="name">15 Awards Won</div>
-            </div>
-          </div>
-
-          <!-- fuct item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="fuct-item">
-              <div class="icon"><span class="fa fa-coffee"></span></div>
-              <div class="name">1 000 Cups of coffee</div>
-            </div>
-          </div>
-
-          <!-- fuct item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="fuct-item">
-              <div class="icon"><span class="fa fa-flag"></span></div>
-              <div class="name">10 Countries Visited</div>
-            </div>
-          </div>
-
-          <div class="clear"></div>
-        </div>
-      </div>
-
-      <!--
-        Clients
-      -->
-      <div class="content clients">
-        <!-- title -->
-        <div class="title">Clients</div>
-
-        <!-- content -->
-        <div class="row client-items">
-          <!-- client item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="client-item">
-              <div class="image">
-                <a target="_blank" href="https://www.google.com">
-                  <img src="images/clients/client_1.png" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- client item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="client-item">
-              <div class="image">
-                <a target="_blank" href="https://www.google.com">
-                  <img src="images/clients/client_2.png" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- client item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="client-item">
-              <div class="image">
-                <a target="_blank" href="https://www.google.com">
-                  <img src="images/clients/client_3.png" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- client item -->
-          <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
-            <div class="client-item">
-              <div class="image">
-                <a target="_blank" href="https://www.google.com">
-                  <img src="images/clients/client_4.png" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="clear"></div>
-        </div>
-      </div>
-
-      <!-- Quote -->
-      <div class="content quote">
-        <!-- title -->
-        <div class="title">
-          <span>Quote</span>
-        </div>
-
-        <!-- content -->
-        <div class="row">
-          <div class="col col-d-12 col-t-12 col-m-12 border-line-v">
-            <div class="revs-item">
-              <div class="text">
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  ipsum dolor sit amet, consectetur adipiscing elit.
-                </div>
-              </div>
-              <div class="user">
-                <div class="img">
-                  <img src="images/profile.png" alt="Ryan Adlard" />
-                </div>
-                <div class="info">
-                  <div class="name">Ryan Adlard</div>
-                  <div class="company">Web Designer</div>
-                </div>
-                <div class="clear"></div>
-              </div>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
+      
     </ActiveSection>
     <ActiveSection :sectionName="'resume'">
       <!--
@@ -386,70 +114,39 @@
         <!-- content -->
         <div class="row">
           <!-- experience -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
+          <div class="col col-d-12 col-t-6 col-m-12 border-line-v">
             <div class="resume-title border-line-h">
               <div class="icon"><i class="fa fa-briefcase"></i></div>
               <div class="name">Experience</div>
             </div>
             <div class="resume-items">
-              <div class="resume-item border-line-h active">
-                <div class="date">2013 - Present</div>
-                <div class="name">Art Director</div>
-                <div class="company">Facebook Inc.</div>
+              <div :class="'resume-item border-line-h ' + (index === 0 ? 'active': '')" v-for="(company, index) in this.resume.experiences" :key="company.company_name">
+                <div class="date">{{ company.period }}</div>
+                <div class="name">{{ company.title }}</div>
+                <div class="company">{{ company.company_name}}</div>
                 <p>
-                  Collaborate with creative and development teams on the
-                  execution of ideas.
+                  {{ company.description }}
                 </p>
-              </div>
-              <div class="resume-item border-line-h">
-                <div class="date">2011 - 2012</div>
-                <div class="name">Front-end Developer</div>
-                <div class="company">Google Inc.</div>
-                <p>
-                  Monitored technical aspects of the front-end delivery for
-                  several projects.
-                </p>
-              </div>
-              <div class="resume-item">
-                <div class="date">2009 - 2010</div>
-                <div class="name">Senior Developer</div>
-                <div class="company">Abc Inc.</div>
-                <p>Optimize website performance using latest technology.</p>
               </div>
             </div>
           </div>
 
           <!-- education -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
+          <div class="col col-d-12 col-t-6 col-m-12 border-line-v">
             <div class="resume-title border-line-h">
               <div class="icon"><i class="fa fa-university"></i></div>
               <div class="name">Education</div>
             </div>
             <div class="resume-items">
-              <div class="resume-item border-line-h">
-                <div class="date">2006 - 2008</div>
-                <div class="name">Art University</div>
-                <div class="company">New York</div>
+              <div class="resume-item border-line-h" v-for="school in this.resume.educations" :key="school.name">
+                <div class="date">{{ school.period }}</div>
+                <div class="name">{{ school.name }}</div>
+                <div class="company">{{ school.address }}</div>
                 <p>
-                  Bachelor's Degree in Computer Science ABC Technical Institute,
-                  Jefferson, Missouri
+                  {{ school.major }}
                 </p>
               </div>
-              <div class="resume-item border-line-h">
-                <div class="date">2005 - 2006</div>
-                <div class="name">Programming Course</div>
-                <div class="company">Paris</div>
-                <p>Coursework - Git, WordPress, Javascript, iOS, Android.</p>
-              </div>
-              <div class="resume-item">
-                <div class="date">2004 - 2005</div>
-                <div class="name">Web Design Course</div>
-                <div class="company">London</div>
-                <p>
-                  Converted Photoshop layouts to web pages using HTML, CSS, and
-                  JavaScript
-                </p>
-              </div>
+              
             </div>
           </div>
 
@@ -470,83 +167,17 @@
           <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
             <div class="skills-list">
               <div class="skill-title border-line-h">
-                <div class="icon"><i class="fa fa-paint-brush"></i></div>
-                <div class="name">Design</div>
-              </div>
-              <ul>
-                <li class="border-line-h">
-                  <div class="name">Web Design</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 90%"></div>
-                  </div>
-                </li>
-                <li class="border-line-h">
-                  <div class="name">Write Music</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 65%"></div>
-                  </div>
-                </li>
-                <li class="border-line-h">
-                  <div class="name">Photoshop</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 75%"></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="name">Graphic Design</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 85%"></div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- skill item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div class="skills-list dotted">
-              <div class="skill-title border-line-h">
-                <div class="icon"><i class="fa fa-flag"></i></div>
-                <div class="name">Languages</div>
-              </div>
-              <ul>
-                <li class="border-line-h">
-                  <div class="name">English</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 90%"></div>
-                  </div>
-                </li>
-                <li class="border-line-h">
-                  <div class="name">German</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 60%"></div>
-                  </div>
-                </li>
-                <li class="border-line-h">
-                  <div class="name">Italian</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 30%"></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="name">French</div>
-                  <div class="progress">
-                    <div class="percentage" style="width: 70%"></div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- skill item -->
-          <div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div class="skills-list circles">
-              <div class="skill-title border-line-h">
                 <div class="icon"><i class="fa fa-code"></i></div>
                 <div class="name">Coding</div>
               </div>
-              <ul>
-                <SkillProgress :skills="skills" />
+              <ul v-if="this.skills && this.skills.length > 0">
+                <!-- <SkillProgress :skills="this.skills" /> -->
+                <li class="border-line-h" v-for="skill in this.skills" :key="skill.name">
+                  <div class="name">{{ skill.name }}</div>
+                  <div class="progress">
+                    <div class="percentage" :style="'width:'  + skill.value + '%'"></div>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -558,30 +189,9 @@
                 <div class="icon"><i class="fa fa-list"></i></div>
                 <div class="name">Knowledge</div>
               </div>
-              <ul>
-                <li>
-                  <div class="name">Website hosting</div>
-                </li>
-                <li>
-                  <div class="name">iOS and android apps</div>
-                </li>
-                <li>
-                  <div class="name">Create logo design</div>
-                </li>
-                <li>
-                  <div class="name">Design for print</div>
-                </li>
-                <li>
-                  <div class="name">Modern and mobile-ready</div>
-                </li>
-                <li>
-                  <div class="name">Advertising services include</div>
-                </li>
-                <li>
-                  <div class="name">Graphics and animations</div>
-                </li>
-                <li>
-                  <div class="name">Search engine marketing</div>
+              <ul v-if="this.knowledges && this.knowledges.length > 0">
+                <li v-for="knowledge in this.knowledges" :key="knowledge.name">
+                  <div class="name">{{ knowledge.name }}</div>
                 </li>
               </ul>
             </div>
@@ -590,26 +200,7 @@
           <div class="clear"></div>
         </div>
       </div>
-
-      <!--
-        Testimonials
-      -->
-      <div class="content testimonials">
-        <!-- title -->
-        <div class="title">Testimonials</div>
-
-        <!-- content -->
-        <div class="row testimonials-items">
-          <!-- client item -->
-          <div class="col col-d-12 col-t-12 col-m-12 border-line-v">
-            <div class="revs-carousel default-revs">
-              <Testimonials />
-            </div>
-          </div>
-
-          <div class="clear"></div>
-        </div>
-      </div>
+      
     </ActiveSection>
 
     <!--
@@ -619,21 +210,18 @@
       <WorkIsotope />
     </ActiveSection>
 
-    <!--
-    Card - Blog
-  -->
     <Blogs />
 
-    <!--
-    Card - Contacts
-  -->
     <Contact />
+    
+    <Chatbot />
   </Layout>
 </template>
 
 <script>
 import ActiveSection from "../src/components/ActiveSection.vue";
 import Blogs from "../src/components/Blogs.vue";
+import Chatbot from '../src/components/Chatbot.vue';
 import Contact from "../src/components/Contact.vue";
 import SkillProgress from "../src/components/SkillProgress.vue";
 import Testimonials from "../src/components/Testimonials.vue";
@@ -644,34 +232,6 @@ import Layout from "../src/layout/Layout.vue";
 import { navFunction } from "../src/navFunction";
 export default {
   name: `index-new`,
-  head() {
-    return {
-      link: [
-        {
-          rel: "stylesheet",
-          href: "css/new-skin/new-skin.css",
-        },
-        {
-          rel: "stylesheet",
-          href: "css/demos/demo-1-colors.css",
-        },
-      ],
-    };
-  },
-  data() {
-    return {
-      navFunction,
-      skills: [
-        { name: "WordPress", value: 90 },
-        { name: "PHP / MYSQL", value: 75 },
-        { name: "Angular / JavaScript", value: 85 },
-        { name: "HTML / CSS", value: 95 },
-      ],
-      profile: {
-        name: 'Huu Ha Doan'
-      }
-    };
-  },
   components: {
     Layout,
     Header,
@@ -682,6 +242,63 @@ export default {
     WorkIsotope,
     SkillProgress,
     Testimonials,
+    Chatbot,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "css/new-skin/new-skin.css",
+        },
+        {
+          rel: "stylesheet",
+          href: "css/demos/demo-3-colors.css",
+        },
+      ],
+    };
+  },
+  data() {
+    return {
+      navFunction,
+      services: [
+        {
+          name: 'Backend Development',
+          desciption: 'With my expertise in PHP, Node.js, and Java. I specialize in building robust, scalable, and efficient server-side solutions. From dynamic web applications to seamless APIs, our team ensures your backend is the backbone of a high-performing digital experience.'
+        },
+        {
+          name: 'Frontend Development',
+          desciption: 'My expertise lies in Vue.js, React, Angular, HTML, CSS, and JavaScript, ensuring that we bring your digital vision to life with precision and innovation. Whether you seek a responsive and mobile-friendly website, a feature-rich web application, or a seamless user interface, our team is dedicated to delivering exceptional results'
+        },
+        {
+          name: 'Mobile Development',
+          desciption: 'Elevate your mobile presence with my personalized mobile development service. Proficient in Kotlin, Flutter, and React Native, I craft cross-platform, high-performance mobile applications. From intuitive user interfaces to efficient codebases, I bring innovation and versatility to every project, ensuring your mobile app stands out in functionality and user experience.'
+        },
+        {
+          name: 'DevOps',
+          desciption: 'Transforming businesses through my personalized DevOps service on AWS. I optimize workflows, implement continuous integration, and architect scalable AWS solutions. With a focus on efficiency and reliability, I ensure seamless deployments, enabling clients to leverage the full potential of AWS for enhanced performance and growth.'
+        }
+      ]
+    };
+  },
+  computed: {
+    profile() {
+      return this.$store.state.profile.personal;
+    },
+    skills() {
+      return this.$store.state.profile.skills;
+    },
+    knowledges() {
+      return this.$store.state.profile.knowledges;
+    },
+    resume() {
+      return this.$store.state.profile.resume;
+    }
+  },
+
+  mounted() {
+    
+  }
+  
 };
 </script>

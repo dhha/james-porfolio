@@ -20,7 +20,7 @@
           <div class="row border-line-v">
             <!-- blog item -->
             <div
-              class="col col-d-6 col-t-6 col-m-12"
+              class="col col-d-12 col-t-12 col-m-12"
               v-for="(blog, i) in data"
               :key="i"
             >
@@ -35,16 +35,12 @@
                 </div>
                 <div class="desc">
                   <a href="#" @click="activeBlogPost(blog)">
-                    <span class="date">April 28, 2020</span>
+                    <span class="date">{{ blog.date }}</span>
                   </a>
-                  <a href="#" @click="activeBlogPost(blog)" class="name"
-                    >By spite about do of allow</a
-                  >
+                  <a href="#" @click="activeBlogPost(blog)" class="name">{{ blog.title }}</a>
                   <div class="text">
                     <p>
-                      Ex audire suavitate has, ei quodsi tacimates sapientem
-                      sed, pri zril ubique ut. Te cule tation munere noluisse.
-                      Enim torquatos&#8230;
+                      {{ blog.desciption }}
                     </p>
                   </div>
                 </div>
@@ -53,15 +49,6 @@
             <div class="clear"></div>
           </div>
 
-          <div class="pager">
-            <nav class="navigation pagination">
-              <div class="nav-links">
-                <span class="page-numbers current">1</span>
-                <a class="page-numbers" href="#">2</a>
-                <a class="next page-numbers" href="#">Next</a>
-              </div>
-            </nav>
-          </div>
         </div>
       </ActiveSection>
     </div>
@@ -81,24 +68,10 @@ export default {
       navFunction,
       data: [
         {
-          img: "images/blog/blog1.jpg",
-          date: "APRIL 28, 2020",
-          title: "By spite about do of allow",
-        },
-        {
-          img: "images/blog/blog2.jpg",
-          date: "APRIL 28, 2020",
-          title: "By spite about do of allow",
-        },
-        {
-          img: "images/blog/blog3.jpg",
-          date: "APRIL 28, 2020",
-          title: "By spite about do of allow",
-        },
-        {
-          img: "images/blog/blog1.jpg",
-          date: "APRIL 28, 2020",
-          title: "By spite about do of allow",
+          img: "/images/blog/Lambda-OpenAI.png",
+          date: "February 01, 2022",
+          title: "Integrating Chat-GPT with Lambda",
+          desciption: 'Create Simple chatGPT api with Lambda function'
         },
       ],
       activeData: null,
