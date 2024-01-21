@@ -35,7 +35,7 @@ export const actions = {
             address: 'Jacksonville, Florida, USA',
             email: 'doanhuuha@gmail.com',
             phone_number: '+1(319)512 6710',
-            website: 'https://doangia.dev',
+            website: 'https://doangia.net',
             github: 'https://github.com/dhha',
             linkedin: 'https://www.linkedin.com/in/huuha-doan/',
             avatar: 'images/profile/z5079069516557_6ac8fb7a11b80cb567f55dc01c03ce08.jpg',
@@ -45,11 +45,13 @@ export const actions = {
 
         let skills = [
             { name: "Laravel", value: 90 },
+            { name: "Symfony", value: 90 },
             { name: "Vuejs", value: 90 },
-            { name: "React", value: 30 },
+            { name: "React", value: 50 },
+            { name: "Angular", value: 40 },
             { name: "Symfony", value: 80 },
             { name: "PHP / MYSQL", value: 75 },
-            { name: "Angular / JavaScript", value: 85 },
+            { name: "JavaScript / TypeScript", value: 85 },
             { name: "HTML / CSS", value: 95 },
         ];
         commit('FETCH_SKILLS', skills);
@@ -57,7 +59,12 @@ export const actions = {
         let knowledges = [
             {name: 'Website hosting'},
             {name: 'iOS and android apps'},
-            {name: 'AWS EC2'},
+            {name: 'Project analytic'},
+            {name: 'Flutter, React native'},
+            {name: 'Java, C#'},
+            {name: 'Design Pattern'},
+            {name: 'DevOps'},
+            {name: 'AWS'},
         ]
         
         commit('FETCH_KNOWLEDGE', knowledges);

@@ -138,7 +138,7 @@
               <div class="name">Education</div>
             </div>
             <div class="resume-items">
-              <div class="resume-item border-line-h" v-for="school in this.resume.educations" :key="school.name">
+              <div class="resume-item border-line-h active" v-for="school in this.resume.educations" :key="school.name">
                 <div class="date">{{ school.period }}</div>
                 <div class="name">{{ school.name }}</div>
                 <div class="company">{{ school.address }}</div>
@@ -213,7 +213,7 @@
     <Blogs />
 
     <Contact />
-    
+
     <Chatbot />
   </Layout>
 </template>

@@ -76,9 +76,13 @@
                   class="button"
                   @click="sendEmail"
                 >
-                  <span class="text">Send Message</span>
-                  <span class="arrow"></span>
+                  <div v-if="loading"><beat-loader class="custom-class" color="#bada55" :loading="true" :size="10" sizeUnit="px"></beat-loader></div>
+                  <template v-else>
+                    <span class="text">Send Message</span>
+                    <span class="arrow"></span>
+                  </template>
                 </a>
+                
               </div>
             </form>
           </div>
@@ -91,13 +95,16 @@
 <script>
 import axios from 'axios';
 import ActiveSection from "./ActiveSection.vue";
+import { BeatLoader } from '@saeris/vue-spinners';
+
 export default {
   name: `Contact`,
-  components: { ActiveSection },
+  components: { ActiveSection, BeatLoader },
   data() {
     return {
       success: false,
       errors: [],
+      loading: false,
       form: {
         name: '',
         email: '',
@@ -112,29 +119,53 @@ export default {
     }
   },
   methods: {
+    init() {
+      this.form = {
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      };
+    },
     sendEmail() {
       this.errors = [];
-      this.success = false;
+      let passValidate = true;
       
       if (!this.form.name) {
         this.errors.name = 'Name required.';
+        passValidate = false;
       }
       if (!this.form.email) {
         this.errors.email = 'Email required.';
+        passValidate = false;
+      }
+      if (!this.validateEmail(this.form.email)) {
+        this.errors.email = 'Email invalid.';
+        passValidate = false;
       }
       if (!this.form.phone) {
         this.errors.phone = 'Phone required.';
+        passValidate = false;
       }
 
-      if(this.errors.length == 0) {
+      if(passValidate) {
+        this.success = false;
+        this.loading = true;
         //Send email to admin
         axios.post('https://syynmsdyz2.execute-api.ap-southeast-1.amazonaws.com/V1/contact', this.form)
         .then(response => {
+          this.init();
           this.success = true;
+          this.loading = false;
         }).catch((err) => {
-
+          this.loading = false;
         })
       }
+    },
+    validateEmail(email) {
+      return email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
     }
   }
 };

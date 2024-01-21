@@ -30,38 +30,105 @@
             <!-- blog content -->
             <div class="blog-content">
               <p>
-                So striking at of to welcomed resolved. Northward by described
-                up household therefore attention. Excellence decisively nay man
-                yet impression for contrasted remarkably.
+                Integrating ChatGPT with AWS Lambda involves setting up an API Gateway to act as a trigger for your Lambda function. Below are the general steps you can follow
               </p>
-              <p>
-                Forfeited you engrossed but gay sometimes explained. Another as
-                studied it to evident. Merry sense given he be arise. Conduct at
-                an replied removal an amongst. Remaining determine few her two
-                cordially admitting old.
-              </p>
-              <blockquote>
-                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                posuere cubilia Curae; Pellentesque suscipit.
-              </blockquote>
-              <p>
-                Tiled say decay spoil now walls meant house. My mr interest
-                thoughts screened of outweigh removing. Evening society musical
-                besides inhabit ye my. Lose hill well up will he over on.
-                Increasing sufficient everything men him admiration unpleasing
-                sex.
-              </p>
+
               <ul class="list-style">
-                <li>Greatest properly off ham exercise all.</li>
-                <li>Unsatiable invitation its possession nor off.</li>
-                <li>
-                  All difficulty estimating unreserved increasing the
-                  solicitude.
-                </li>
+                <li>Create an AWS Lambda Function.</li>
+                <li>Set Up an API Gateway.</li>
+                <li>Configure API Gateway</li>
+                <li>Deploy API</li>
+                <li>Use the API Endpoint</li>
+                <li>Interact with ChatGPT</li>
               </ul>
+
+              <p>Create an AWS Lambda Function:</p>
+              <blockquote>
+                <ul>
+                  <li>Go to the AWS Management Console.</li>
+                  <li>Open the Lambda service.</li>
+                  <li>Click on "Create function."</li>
+                  <li>Choose "Author from scratch," give your function a name, select a runtime (e.g., Python, Node.js), and configure other settings.</li>
+                  <li>Write or upload your code that interacts with ChatGPT.</li>
+                </ul>
+              </blockquote>
+              <p>Example code in nodejs</p>
+              <blockquote>
+                <pre>
+import axios from 'axios';
+const OPENAI_API_KEY = ''; // Replace with your OpenAI API key
+const OPENAI_API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
+
+export const handler = async (event) => {
+  const { message } = event;
+  // Request completion from ChatGPT
+  const response = await axios.post(
+    OPENAI_API_ENDPOINT,
+    {
+      model: 'gpt-3.5-turbo',
+      messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: message }],
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+      },
+    }
+  );
+    
+  const botMessage = response.data.choices[0].message.content;
+  return {
+    statusCode: 200,
+    message: botMessage
+  };
+};
+              </pre>
+              </blockquote>
+              <p>Set Up an API Gateway:</p>
+              <blockquote>
+                <ul>
+                  <li>In the Lambda function configuration, go to the "Designer" tab.</li>
+                  <li>Click on "Add trigger."</li>
+                  <li>Choose "API Gateway" as the trigger type.</li>
+                  <li>Configure the API Gateway details, or create a new API.</li>
+                </ul>
+              </blockquote>
+
+              <p>Configure API Gateway:</p>
+
+              <blockquote>
+                <ul>
+                  <li>In the API Gateway console, select the API you created.</li>
+                  <li>Create a new resource and method (e.g., POST).</li>
+                  <li>Configure the integration type as Lambda Function, and choose the Lambda function you created.</li>
+                </ul>
+              </blockquote>
+              <p>Deploy API:</p>
+              <blockquote>
+                <ul>
+                  <li>After configuring the API, deploy it to make it accessible via a public URL.</li>
+                  <li>In the API Gateway console, go to "Actions" -> "Deploy API."</li>
+                  <li>Choose or create a new deployment stage.</li>
+                </ul>
+              </blockquote>
+              <p>Use the API Endpoint:</p>
+              <blockquote>
+                <ul>
+                  <li>Once deployed, you'll be provided with an API endpoint.</li>
+                  <li>Use this endpoint to make HTTP requests to your Lambda function.</li>
+                  </ul>
+                </blockquote>
+              <p>Interact with ChatGPT:</p>
+              <ul>
+                <li>Inside your Lambda function code, use the OpenAI API or any other method to interact with ChatGPT.</li>
+                <li>Pass input data to ChatGPT and retrieve the responses.</li>
+              </ul>
+
               <p>
-                Unpleasant astonished an diminution up partiality. Noisy an
-                their of meant. Death means up civil do an offer wound of.
+                Remember to handle security aspects, such as setting up proper authentication and authorization for your API Gateway, and securing sensitive information in your Lambda function.
+              </p>
+              <p>
+                Please note that the specific implementation details may vary based on your programming language, runtime, and any specific requirements you have for integrating ChatGPT with Lambda
               </p>
             </div>
 
@@ -91,8 +158,8 @@
                 ></a>
               </div>
               <span class="tags-links"
-                >Taggs: <a href="#">code</a><a href="#">html</a
-                ><a href="#">plugin</a><a href="#">wordpress</a></span
+                >Taggs: <a href="#">chatgpt</a><a href="#">lambda</a
+                ><a href="#">aws</a><a href="#">vuejs</a></span
               >
             </div>
           </div>
@@ -114,7 +181,7 @@
         </div>
       </nav> -->
 
-      <div class="post-comments">
+      <!-- <div class="post-comments">
         <div class="title">
           <div class="title_inner">Comments</div>
         </div>
@@ -142,7 +209,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="post-comments">
         <div class="title">Leave a Comment</div>
@@ -176,9 +243,6 @@
                   </a>
                 </div>
               </form>
-              <div class="alert-success">
-                <p>Thanks, your message is sent successfully.</p>
-              </div>
             </div>
           </div>
         </div>

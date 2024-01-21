@@ -61,7 +61,7 @@ export default {
         return [
           { name: "About", href: "about", icon: "icon ion-person" },
           { name: "Resume", href: "resume", icon: "icon ion-android-list" },
-          { name: "Works", href: "works", icon: "icon ion-paintbrush" },
+          // { name: "Works", href: "works", icon: "icon ion-paintbrush" },
           { name: "Blog", href: "blog", icon: "icon ion-chatbox-working" },
           { name: "Contact", href: "contacts", icon: "icon ion-at" },
           { name: "ChatBot", href: "chat", icon: "icon ion-chatbox" },
